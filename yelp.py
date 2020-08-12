@@ -5,7 +5,7 @@ import csv
 pages=[20,40,60,80,100]
 
 for page in pages:
-    source= requests.get("https://www.yelp.com/biz/bar-karaoke-lounge-toronto?start={}".format(page))
+    source= requests.get('https://www.yelp.com/biz/bar-karaoke-lounge-toronto?start={}'.format(page))
 
 
     print(page)
@@ -19,7 +19,7 @@ for page in pages:
     # Open writer with name
     file_name = "yelp_reviews_new.csv"
     # set newline to be '' so that that new rows are appended without skipping any
-    f = csv.writer(open(file_name, 'w', newline=''))
+    f = csv.writer(open(file_name, 'a', newline=''))
 
     # write a new row as a header
     f.writerow(['Name', 'Location', 'Reviews'])
