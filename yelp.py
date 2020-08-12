@@ -17,7 +17,7 @@ for page in pages:
     print(len(my_review))
 
     # Open writer with name
-    file_name = "yelp_reviews.csv"
+    file_name = "yelp_reviews_new.csv"
     # set newline to be '' so that that new rows are appended without skipping any
     f = csv.writer(open(file_name, 'w', newline=''))
 
