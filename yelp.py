@@ -2,7 +2,15 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
-pages=[20,40,60,80,100]
+pages=[0,20,40,60,80,100]
+
+# Open writer with name
+file_name = "yelp_reviews_new.csv"
+# set newline to be '' so that that new rows are appended without skipping any
+f = csv.writer(open(file_name, 'w', newline=''))
+
+ # write a new row as a header
+f.writerow(['Name', 'Location', 'Reviews'])
 
 for page in pages:
     source= requests.get('https://www.yelp.com/biz/bar-karaoke-lounge-toronto?start={}'.format(page))
@@ -11,18 +19,12 @@ for page in pages:
     print(page)
     soup = BeautifulSoup(source.text, 'html.parser')
     #print(soup)
-    reviews=soup.find(class_="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-grid-column--8__373c0__2dUx_ padding-r6__373c0__2Qlev border-color--default__373c0__3-ifU")
+    reviews=soup.find(class_="lemon--div__373c0__1mboc spinner-container__373c0__N6Hff border-color--default__373c0__3-ifU")
 
     my_review=reviews.find_all(class_="lemon--li__373c0__1r9wz margin-b3__373c0__q1DuY padding-b3__373c0__342DA border--bottom__373c0__3qNtD border-color--default__373c0__3-ifU")
     print(len(my_review))
 
-    # Open writer with name
-    file_name = "yelp_reviews_new.csv"
-    # set newline to be '' so that that new rows are appended without skipping any
-    f = csv.writer(open(file_name, 'a', newline=''))
-
-    # write a new row as a header
-    f.writerow(['Name', 'Location', 'Reviews'])
+    
 
     for reviews in my_review:
 
@@ -40,7 +42,3 @@ for page in pages:
         print('Writing rows')
         # add the information as a row into the csv table
         f.writerow([name, location, people_reviews])
-
-
-
-
