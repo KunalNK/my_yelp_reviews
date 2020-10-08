@@ -19,7 +19,7 @@ for page in pages:
     print(page)
     soup = BeautifulSoup(source.text, 'html.parser')
     #print(soup)
-    reviews=soup.find(class_="lemon--div__373c0__1mboc spinner-container__373c0__N6Hff border-color--default__373c0__3-ifU")
+    reviews=soup.find(class_="lemon--div__373c0__1mboc css-79elbk border-color--default__373c0__3-ifU")
 
     my_review=reviews.find_all(class_="lemon--li__373c0__1r9wz margin-b3__373c0__q1DuY padding-b3__373c0__342DA border--bottom__373c0__3qNtD border-color--default__373c0__3-ifU")
     print(len(my_review))
